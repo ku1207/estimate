@@ -1,0 +1,721 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 상단 헤더 영역 */
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* 메인 콘텐츠 영역 */
+.main-content {
+  flex: 1;
+  display: flex;
+  min-height: calc(100vh - 80px);
+}
+
+/* 왼쪽 입력 영역 */
+.input-section {
+  flex: 4;
+  background: white;
+  border-right: 1px solid #e0e0e0;
+  overflow-y: auto;
+}
+
+.input-container {
+  padding: 30px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.input-container h2 {
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+  font-size: 1rem;
+}
+
+.required {
+  color: #e74c3c;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.submit-button {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.submit-button:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* 오른쪽 출력 영역 */
+.output-section {
+  flex: 6;
+  background: #f8f9fa;
+  overflow-y: auto;
+}
+
+.output-container {
+  padding: 30px;
+  height: 100%;
+}
+
+/* 출력 영역 헤더 스타일 */
+.output-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.output-header h2 {
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.action-button {
+  padding: 8px 16px;
+  border: 2px solid #667eea;
+  border-radius: 6px;
+  background: white;
+  color: #667eea;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.action-button:hover:not(:disabled) {
+  background: #667eea;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.action-button:disabled {
+  border-color: #bdc3c7;
+  color: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.action-button.generating {
+  background: linear-gradient(45deg, #667eea 25%, transparent 25%), 
+              linear-gradient(-45deg, #667eea 25%, transparent 25%), 
+              linear-gradient(45deg, transparent 75%, #667eea 75%), 
+              linear-gradient(-45deg, transparent 75%, #667eea 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  animation: loading-stripes 1s linear infinite;
+  color: white;
+}
+
+@keyframes loading-stripes {
+  0% {
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+  100% {
+    background-position: 20px 0, 20px 10px, 30px -10px, 10px 0px;
+  }
+}
+
+.estimate-result {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.result-content {
+  padding: 25px;
+}
+
+.result-content pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  font-size: 14px;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #7f8c8d;
+  text-align: center;
+}
+
+.placeholder p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+/* 견적서 문서 스타일 */
+.estimate-document {
+  padding: 30px;
+  background: white;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.estimate-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.estimate-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.estimate-info-table td {
+  padding: 15px;
+  border: 1px solid #ddd;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.label-cell {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+  text-align: center;
+  width: 20%;
+}
+
+.value-cell {
+  text-align: left;
+  color: #333;
+  width: 30%;
+}
+
+.estimate-info-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.estimate-amount {
+  font-weight: 700;
+  color: #667eea;
+  font-size: 16px;
+}
+
+.vat-notice {
+  text-align: right;
+  color: #666;
+  font-size: 12px;
+  margin-top: 20px;
+  margin-bottom: 2px;
+  font-style: italic;
+}
+
+/* 인력 투입 계획 테이블 스타일 */
+.staff-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.staff-table thead {
+  background-color: #667eea;
+  color: white;
+}
+
+.staff-table th {
+  padding: 12px 15px;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  height: 45px;
+}
+
+.staff-table th:nth-child(1) { width: 16%; } /* 항목 */
+.staff-table th:nth-child(2) { width: 12%; } /* 기술등급 */
+.staff-table th:nth-child(3) { width: 12%; } /* 투입인원 */
+.staff-table th:nth-child(4) { width: 12%; } /* 업무 투입률 */
+.staff-table th:nth-child(5) { width: 12%; } /* 작업기간 */
+.staff-table th:nth-child(6) { width: 16%; } /* 단가 */
+.staff-table th:nth-child(7) { width: 16%; } /* 금액 */
+
+.staff-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 13px;
+  vertical-align: middle;
+  height: 45px;
+}
+
+.staff-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.staff-table tbody tr:hover:not(.total-row) {
+  background-color: #e3f2fd;
+}
+
+.no-data {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+}
+
+.total-row {
+  background-color: #e2ecda;
+  color: #333;
+  font-weight: 600;
+}
+
+.total-label {
+  text-align: right;
+  font-size: 14px;
+}
+
+.total-amount {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* 3번째 테이블 (비용 산출 내역) 스타일 */
+.cost-breakdown-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cost-breakdown-table td {
+  padding: 15px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  vertical-align: middle;
+  height: 45px;
+}
+
+.cost-label {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+  text-align: left;
+  width: 84%;
+}
+
+.cost-amount {
+  text-align: right;
+  color: #333;
+  font-weight: 500;
+  width: 16%;
+}
+
+.cost-amount-right {
+  text-align: right;
+  color: #666;
+  font-style: italic;
+  width: 16%;
+}
+
+.total-cost-row {
+  background-color: #e2ecda;
+  color: #333;
+  font-weight: 600;
+}
+
+.total-cost-label {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.total-cost-amount {
+  text-align: right;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.cost-breakdown-table tbody tr:hover:not(.total-cost-row) {
+  background-color: #e3f2fd;
+}
+
+/* 4번째 테이블 (최종 금액) 스타일 */
+.final-price-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  margin-bottom: 150px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.final-price-table td {
+  padding: 15px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  vertical-align: middle;
+  height: 45px;
+}
+
+.price-label {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+  text-align: left;
+  width: 84%;
+}
+
+.price-amount {
+  text-align: right;
+  color: #333;
+  font-weight: 500;
+  width: 16%;
+}
+
+.final-total-row {
+  background-color: #e2ecda;
+  color: #333;
+  font-weight: 700;
+}
+
+.final-total-label {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.final-total-amount {
+  text-align: right;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.final-price-table tbody tr:hover:not(.final-total-row) {
+  background-color: #e3f2fd;
+}
+
+/* 5번째 테이블 (견적 범위) 스타일 */
+.scope-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 150px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  page-break-before: always;
+}
+
+.scope-table th,
+.scope-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  vertical-align: top;
+  height: 45px;
+}
+
+.scope-header {
+  background-color: #667eea;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.scope-content {
+  background-color: #ffffff;
+  width: 50%;
+}
+
+.scope-list {
+  margin: 0;
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.scope-list li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+  color: #333;
+  font-size: 14px;
+}
+
+.scope-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* 참고사항 제목 스타일 */
+.reference-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* 6번째 테이블 (참고사항) 스타일 */
+.reference-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reference-content {
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  vertical-align: top;
+}
+
+.reference-list {
+  margin: 0;
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.reference-list li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  color: #495057;
+  font-size: 14px;
+}
+
+.reference-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+  
+  .input-section {
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .input-container,
+  .output-container {
+    padding: 20px;
+  }
+  
+  .output-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .action-buttons {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .action-button {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+  
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .estimate-result {
+    height: 400px;
+  }
+  
+  .estimate-document {
+    padding: 15px;
+  }
+  
+  .estimate-title {
+    font-size: 1.5rem;
+  }
+  
+  .estimate-info-table td {
+    padding: 10px;
+    font-size: 12px;
+  }
+  
+  .staff-table th,
+  .staff-table td {
+    padding: 8px;
+    font-size: 11px;
+    height: 40px;
+  }
+  
+  .staff-table {
+    margin-top: 8px;
+  }
+  
+  .vat-notice {
+    margin-top: 15px;
+    margin-bottom: 1px;
+    font-size: 11px;
+  }
+  
+  .cost-breakdown-table {
+    margin-top: 20px;
+  }
+  
+  .cost-breakdown-table td {
+    padding: 10px;
+    font-size: 12px;
+    height: 40px;
+  }
+  
+  .total-cost-label {
+    font-size: 14px;
+  }
+  
+  .total-cost-amount {
+    font-size: 16px;
+  }
+  
+  .final-price-table {
+    margin-top: 20px;
+  }
+  
+  .final-price-table td {
+    padding: 10px;
+    font-size: 12px;
+    height: 40px;
+  }
+  
+  .final-total-label {
+    font-size: 14px;
+  }
+  
+  .final-total-amount {
+    font-size: 16px;
+  }
+  
+  .scope-table {
+    margin-top: 20px;
+  }
+  
+  .scope-table th,
+  .scope-table td {
+    padding: 8px;
+    height: 40px;
+  }
+  
+  .scope-header {
+    font-size: 14px;
+  }
+  
+  .scope-list li {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  
+  .reference-title {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  
+  .reference-content {
+    padding: 15px;
+  }
+  
+  .reference-list li {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+} 
